@@ -17,9 +17,12 @@ class UserSerializer(serializers.ModelSerializer):
     
     def update(self, instance, validated_data):
         """Update a user, setting the password correctly and return it"""
-        print(instance, validated_data)
+        #print('{0},, {1}'.format(instance, validated_data ))
         password = validated_data.pop('password', None)
         user = super().update(instance, validated_data)
+        #print("----------")
+        #print(dir(user))
+        #print('{0},, {1},, {2}'.format(user, instance, validated_data ))
 
         if password:
             user.set_password(password)
